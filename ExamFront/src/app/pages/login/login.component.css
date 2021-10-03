@@ -1,0 +1,9 @@
+.full-width{
+    width: 100%;
+}
+::ng-deep .mat-form-field-wrapper{
+    margin-bottom: -1.25em;
+ }
+ .mt90{
+    margin-top: 90px;
+}
