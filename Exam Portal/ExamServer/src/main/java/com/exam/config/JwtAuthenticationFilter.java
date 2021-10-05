@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@Service
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -36,7 +36,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
           }catch(ExpiredJwtException e){
                 System.out.println("JWT TOKEN HAS EXPIRED: "+ e);
                 e.printStackTrace();
-            }
+            }catch(Exception e){
+              e.printStackTrace();
+              System.out.println("error");
+
+          }
         }else{
             System.out.println("Invalid user not started with bearer token");
         }
@@ -44,14 +48,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             final UserDetails userDetails=this.userDetailsService.loadUserByUsername(username);
             if(this.jwtUtils.validateToken(jwtToken,userDetails)){
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                usernamePasswordAuthenticationToken .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
             }
             else{
                 System.out.println("Token is not valid");
             }
-            filterChain.doFilter(request,response);
+
         }
+        filterChain.doFilter(request,response);
     }
 }

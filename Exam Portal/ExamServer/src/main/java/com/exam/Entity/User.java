@@ -89,7 +89,10 @@ public class User implements UserDetails {
     }
 
     public String getUsername() {
-        return getUsername();
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -107,9 +110,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -117,7 +118,7 @@ public class User implements UserDetails {
         this.userRoleSet.forEach(userRole ->{
                 set.add(new Authority(userRole.getRole().getRolename()));
         });
-        return null;
+        return set;
 
     }
 
