@@ -9,6 +9,9 @@ export class LoginserviceService {
 
   constructor(private http:HttpClient) { }
 
+  public getCurrentUser(){
+    return this.http.get(`${baseurl1}/current-user`)
+  }
   public generateToken(loginuser:any){
     return this.http.post(`${baseurl1}/generate-token`,loginuser);
   }
@@ -54,7 +57,7 @@ if(userStr!=null){
 //get user role
 public getUserRole(){
   let user=this.getUser();
-  return user.get.author
+  return user.get.authorities[0].authority;
 
 }
 }

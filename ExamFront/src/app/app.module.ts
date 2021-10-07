@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './pages/home/home/home.component';
+import { AuthInterceptor, authIntersecptorProviders } from './services/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,7 @@ import { HomeComponent } from './pages/home/home/home.component';
     MatToolbarModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [authIntersecptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

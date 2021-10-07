@@ -27,6 +27,19 @@ password:''
       (data:any)=>{
         Swal.fire("SUCCESS");
         console.log(data);
+
+        //login
+        this.login.loginuserToken(data.token);
+        this.login.getCurrentUser().subscribe(
+          (user:any)=>
+          {
+            this.login.setUser(user);
+            console.log(user);
+            //redirect ADMIN: admin-dashbord
+            //redirext NORMAL: normal-dashbord
+          }
+        );
+        
       },
       (error:any)=>{
         alert("ERROR");
