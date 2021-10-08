@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import baseurl1 from './helper1';
+// import { compileFunction } from 'vm';
+import baseurl from './helper';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ export class LoginserviceService {
   constructor(private http:HttpClient) { }
 
   public getCurrentUser(){
-    return this.http.get(`${baseurl1}/current-user`)
+    return this.http.get(`${baseurl}/current-user`)
   }
   public generateToken(loginuser:any){
-    return this.http.post(`${baseurl1}/generate-token`,loginuser);
+    return this.http.post(`${baseurl}/generate-token`,loginuser);
   }
 
   //to save token in local storege for login purpose
@@ -51,13 +52,12 @@ if(userStr!=null){
   return JSON.parse(userStr);
 }else{
   this.logout();
-  return null;
+  //location.reload();
 }
 }
-//get user role
+//get user role...................................
 public getUserRole(){
   let user=this.getUser();
-  return user.get.authorities[0].authority;
-
+  return user.authorities[0].authority; 
 }
 }

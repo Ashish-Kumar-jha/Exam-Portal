@@ -19,21 +19,28 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //for registring new user in exam portal
+    @Autowired
+    UserRepository userRepository;
+
+    //for registering new user in exam portal
     @PostMapping("/create-user")
     public User createUser(@RequestBody User user) throws Exception {
         Set<UserRole> userRoleSet=new HashSet<>();
         Role role=new Role(10L,"NORMAL");
         UserRole userRole=new UserRole(user,role);
         userRoleSet.add(userRole);
-
         return this.userService.createUser(user,userRoleSet);
     }
 
     //for finding a user in exam portal
-    @GetMapping("find-user/{username}")
+    @GetMapping("/find-user/{username}")
     public User findUser(@PathVariable String username){
         return  this.userService.findUser(username);
     }
 
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable Long id){
+        this.userRepository.deleteById(id);
+
+}
 }

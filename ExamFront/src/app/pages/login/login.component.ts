@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginserviceService } from 'src/app/services/loginservice.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +14,7 @@ public loginuser={
 username:'',
 password:''
 };
-  constructor(private login:LoginserviceService) { }
+  constructor(private login:LoginserviceService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -35,8 +38,23 @@ password:''
           {
             this.login.setUser(user);
             console.log(user);
-            //redirect ADMIN: admin-dashbord
-            //redirext NORMAL: normal-dashbord
+           
+            if(this.login.getUserRole() == 'ADMIN'){
+               //redirect ADMIN: admin-dashbord
+              window.location.href='/admin';
+              // this.router.navigate(["admin"]);
+
+            }
+            else if(this.login.getUserRole() == 'NORMAL'){
+              //redirext NORMAL: normal-dashbord
+              window.location.href='/user-dashboard';
+              // this.router.navigate(["user-dashboard"]);
+            }
+            else{
+              this.login.logout();
+
+              
+            }
           }
         );
         

@@ -21,6 +21,6 @@ constructor(private login:LoginserviceService){}
 export const authIntersecptorProviders=[{
     provide :HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
-    Multi:true,
+    multi:true,
 },
 ];
