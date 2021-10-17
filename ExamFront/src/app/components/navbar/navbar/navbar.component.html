@@ -10,7 +10,7 @@
     <span class="example-spacer"></span>
    
     <a
-    *ngIf="!login.isLoggedIn()"
+    *ngIf="!isLoggedIn"
     mat-icon-button 
     routerLink="/login"
     class="example-icon favorite-icon" 
@@ -20,7 +20,7 @@
 
 
     <a 
-    *ngIf="!login.isLoggedIn()"
+    *ngIf="!isLoggedIn"
     mat-icon-button 
     routerLink="/signup"
     class="example-icon ml20" 
@@ -32,7 +32,7 @@
 
     <a 
     (click)="logout()"
-    *ngIf="login.isLoggedIn()"
+    *ngIf="isLoggedIn"
     mat-icon-button 
     class="example-icon ml20" 
     aria-label="Example icon-button with share icon"> 
@@ -40,10 +40,12 @@
     </a>
 
     <button 
-    *ngIf="login.isLoggedIn()"
+    *ngIf="isLoggedIn && user"
     mat-button 
     class="example-icon ml20" 
+    routerLink="/admin/profile";
     aria-label="Example icon-button with share icon"> 
-    {{login.getUser().username}}
+    <!-- {{ login.getUser().username }} -->
+  {{user.username}}
   </button>
   </mat-toolbar>

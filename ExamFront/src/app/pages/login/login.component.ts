@@ -34,7 +34,7 @@ password:''
         //login
         this.login.loginuserToken(data.token);
         this.login.getCurrentUser().subscribe(
-          (user:any)=>
+          (user:any)=>   
           {
             this.login.setUser(user);
             console.log(user);
@@ -42,13 +42,13 @@ password:''
             if(this.login.getUserRole() == 'ADMIN'){
                //redirect ADMIN: admin-dashbord
               window.location.href='/admin';
-              // this.router.navigate(["admin"]);
+               //this.router.navigate(["admin"]);
 
             }
             else if(this.login.getUserRole() == 'NORMAL'){
               //redirext NORMAL: normal-dashbord
               window.location.href='/user-dashboard';
-              // this.router.navigate(["user-dashboard"]);
+              this.router.navigate(["user-dashboard"]);
             }
             else{
               this.login.logout();
@@ -60,7 +60,7 @@ password:''
         
       },
       (error:any)=>{
-        alert("ERROR");
+      Swal.fire("USER DOSE NOT EXIXT");
         console.log(error);
       }
     );

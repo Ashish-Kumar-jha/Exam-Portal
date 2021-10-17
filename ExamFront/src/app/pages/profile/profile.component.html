@@ -1,0 +1,54 @@
+<mat-card *ngIf="user">
+    <h1 class="text-center">Welcome to profile</h1>
+ 
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="container text-center">
+                    <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" 
+                    alt=""
+                    class="profile-image"
+                    />
+                    <h1>{{user.firstname}}  {{user.lastname}}</h1>
+                    <!-- <h1>{{user.firstname}}</h1> -->
+                </div>
+                <!-- {{user | json}} -->
+                <div class="row ">
+                    <div class="col-md-12 offser-md-1">
+                       <table class="table text-center mauto ">
+                           <tr *ngIf="user.username">
+                               <td>User Name</td>
+                               <td>{{ user.username }}</td>
+                               <!-- <td>{{user.username}}</td> -->
+                           </tr>   
+                           <tr *ngIf="user.id">
+                            <td>User Id</td>
+                            <td>{{user.id}}</td>
+                        </tr>
+                        <tr >
+                            <td>Status</td>
+                            <td>{{user.enabled?"ACTIVE":"NOT ACTIVE"}}</td>
+                        </tr>
+                        <tr *ngIf="user.authorities[0].authority">
+                            <td>Role</td>
+                            <td>{{ user.authorities[0].authority }}</td>
+                            
+                        </tr>
+                        <tr *ngIf="user.phone">
+                            <td>Phone No</td>
+                            <td>{{user.phone}}</td>
+                        </tr>
+                       </table>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        
+        <mat-card-actions class="text-center">
+            <button mat-raised-button color="primary">UPDATE</button>
+            <button mat-raised-button color="accent">SHARE</button>
+          </mat-card-actions>
+    </mat-card-content>
+</mat-card>

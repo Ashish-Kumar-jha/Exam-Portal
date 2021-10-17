@@ -7,6 +7,7 @@ import com.exam.Repository.UserRepository;
 import com.exam.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -21,18 +22,21 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     //for registering new user in exam portal
     @PostMapping("/create-user")
     public User createUser(@RequestBody User user) throws Exception {
         Set<UserRole> userRoleSet=new HashSet<>();
         Role role=new Role(10L,"NORMAL");
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
         UserRole userRole=new UserRole(user,role);
+
         userRoleSet.add(userRole);
         return this.userService.createUser(user,userRoleSet);
     }
 
-    //for finding a user in exam portal
+    //for finding a user in exam p.ortal
     @GetMapping("/find-user/{username}")
     public User findUser(@PathVariable String username){
         return  this.userService.findUser(username);

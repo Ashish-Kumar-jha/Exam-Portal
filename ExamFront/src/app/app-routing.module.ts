@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminguardGuard } from './services/adminguard.guard';
@@ -34,8 +36,19 @@ const routes: Routes = [
   {
     path:'admin',
     component:DashboardComponent,
-    pathMatch:'full',
+    // pathMatch:'full',
     canActivate:[AdminguardGuard],
+    children:[
+      {
+      path:'profile',
+      component:ProfileComponent,
+      },
+      {
+        path:'',
+        component:WelcomeComponent,
+        }
+
+    ],
   },
 
   {

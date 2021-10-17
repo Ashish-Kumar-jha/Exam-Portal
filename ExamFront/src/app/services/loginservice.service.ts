@@ -52,6 +52,7 @@ if(userStr!=null){
   return JSON.parse(userStr);
 }else{
   this.logout();
+  return null;
   //location.reload();
 }
 }
