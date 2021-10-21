@@ -16,6 +16,15 @@ public class Quiz {
     private String maxMarks;
     private String numberOfQuestion;
     private boolean active=false;
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY,cascade = CascadeType.ALL)

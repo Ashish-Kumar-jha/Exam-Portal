@@ -4,10 +4,11 @@ import com.exam.Entity.exam.Quiz;
 import com.exam.Repository.QuizRepository;
 import com.exam.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
-
+@Service
 public class QuizServiceImpl implements QuizService {
     @Autowired
     QuizRepository quizRepository;
@@ -28,7 +29,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz getQuiz(Long quizId) {
-        return this.quizRepository.getById(quizId);
+        return this.quizRepository.findById(quizId).get();
     }
 
     @Override
