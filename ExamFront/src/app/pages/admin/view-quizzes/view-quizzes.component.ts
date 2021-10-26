@@ -21,18 +21,7 @@ quizzes=[
   }
 
 },
-{
-  qId:22,
-  title:'PYTHON',
-  description:'Python programming language',
-  maxMarks:'50',
-  numberOfQuestion:'20',
-  active:'',
-  category:{
-    title:'programing',
-  }
 
-},
 ]
   constructor(private _quiz:QuizService) { }
 
@@ -45,8 +34,11 @@ console.log(this.quizzes);
 (error)=>{
   console.log(error);
   Swal.fire('Error !', "Error in loading data !!",'error');
+});
 }
-);
-  }
 
+
+  deleteQuiz(qId:any){
+   alert(qId);
+  }
 }

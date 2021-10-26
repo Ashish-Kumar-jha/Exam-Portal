@@ -10,6 +10,12 @@ export class QuizService {
   constructor(private _http:HttpClient) { }
 
   public quizzes(){
-    return this._http.get(`${baseurl}/quiz/`)
+    return this._http.get(`${baseurl}/quiz/`);
+  }
+  public addQuiz(quiz:any){
+    return this._http.post(`${baseurl}/quiz/`,quiz);
+  }
+  public deleteQuiz(qId: any){
+    return this._http.delete(`${baseurl}/quiz/${qId}`);
   }
 }
