@@ -4,7 +4,9 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { AddCategoriesComponent } from './pages/admin/add-categories/add-categories.component';
 import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home/home.component';
@@ -71,6 +73,17 @@ const routes: Routes = [
           component:AddQuizComponent,
           pathMatch:'full',
         },
+        {
+          path:'quiz/:qid',
+          component:UpdateQuizComponent,
+          pathMatch:'full',
+        },
+        {
+          path:'view-questions/:qid/:title',
+          component:ViewQuizQuestionsComponent,
+          pathMatch:'full',
+        },
+
     ],
   },
 

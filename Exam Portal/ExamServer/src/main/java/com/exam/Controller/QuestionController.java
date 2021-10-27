@@ -26,31 +26,21 @@ private QuizService quizService;
     public ResponseEntity<?> add(@RequestBody Question question){
         return ResponseEntity.ok(this.questionService.addQuestion(question));
     }
-
     //update
     @PutMapping("/")
     public ResponseEntity<Question> update (@RequestBody Question question){
         return ResponseEntity.ok(this.questionService.updateQuestion(question));
     }
-
     //Get all quiz from quid
     @GetMapping("/quiz/{qid}")
     public ResponseEntity<?> getQuestionOfQuiz(@PathVariable Long qid){
-//        Quiz q=new Quiz();
-//        q.setQid(qid);
-//        Set<Question> questionOfQuiz=this.questionService.getQuestionsOfQuiz(q);
-//        return ResponseEntity.ok(questionOfQuiz);
-
        Quiz quiz= this.quizService.getQuiz(qid);
         Set<Question> questions=quiz.getQuestions();
         List list=new ArrayList(questions);
         list=list.subList(0,Integer.parseInt(quiz.getNumberOfQuestion()+1));
         Collections.shuffle(list);
         return ResponseEntity.ok(list);
-
-
     }
-
     //get single Question
     @GetMapping("/{qusid}")
     public Question get(@PathVariable Long qusid){

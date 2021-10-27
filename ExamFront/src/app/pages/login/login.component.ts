@@ -42,18 +42,16 @@ password:''
             if(this.login.getUserRole() == 'ADMIN'){
                //redirect ADMIN: admin-dashbord
               window.location.href='/admin';
-               //this.router.navigate(["admin"]);
+              //  this.router.navigate(["admin"]);
 
             }
             else if(this.login.getUserRole() == 'NORMAL'){
               //redirext NORMAL: normal-dashbord
               window.location.href='/user-dashboard';
-              this.router.navigate(["user-dashboard"]);
+              // this.router.navigate(["user-dashboard"]);
             }
             else{
               this.login.logout();
-
-              
             }
           }
         );

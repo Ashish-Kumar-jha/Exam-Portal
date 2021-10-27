@@ -1,5 +1,4 @@
 package com.exam.Service.Implementation;
-
 import com.exam.Entity.exam.Quiz;
 import com.exam.Repository.QuizRepository;
 import com.exam.Service.QuizService;
@@ -34,11 +33,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void deleteQuiz(Long quizId) {
-//        Quiz quiz=new Quiz();
-
-//        quiz.setQid(quizId);
         this.quizRepository.deleteById(quizId);
-//        this.quizRepository.delete(quiz);
+
 
     }
 }

@@ -10,14 +10,14 @@ import Swal from 'sweetalert2';
 export class ViewQuizzesComponent implements OnInit {
 quizzes=[
   {
-  qId:22,
-  title:'JAVA',
-  description:'Java Programming Language',
-  maxMarks:'50',
-  numberOfQuestion:'20',
+    qid:0,
+  title:'',
+  description:'',
+  maxMarks:'',
+  numberOfQuestion:'',
   active:'',
   category:{
-    title:'programing',
+    title:'',
   }
 
 },
@@ -38,7 +38,25 @@ console.log(this.quizzes);
 }
 
 
-  deleteQuiz(qId:any){
-   alert(qId);
+  deleteQuiz(qid:any){ 
+    Swal.fire({
+      icon:'info',
+      title:"Are you sure ?",
+      confirmButtonText:'Delete',
+      showCancelButton:true,
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this._quiz.deleteQuiz(qid).subscribe(
+          (data)=>{
+            this.quizzes=this.quizzes.filter((quiz)=>quiz.qid!=qid);
+            Swal.fire('Success','Quiz Deleted','success');
+          }, 
+          (error)=>{
+            Swal.fire('Error','Error in deleting quiz','error');
+          }
+        );
+      }
+    });
+ 
   }
 }
