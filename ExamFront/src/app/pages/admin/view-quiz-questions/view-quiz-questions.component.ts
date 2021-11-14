@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
-import { QuizService } from 'src/app/services/quiz.service';
-
 @Component({
   selector: 'app-view-quiz-questions',
   templateUrl: './view-quiz-questions.component.html',
@@ -11,7 +9,17 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class ViewQuizQuestionsComponent implements OnInit {
 qid:any;
 title:any;
-questions=[];
+questions=[
+  {
+    content:'',
+    image:'',
+    option1:'',
+    option2:'',
+    option3:'',
+    option4:'',
+    answer:''
+  },
+];
   constructor(
     private _route:ActivatedRoute,
     private _question:QuestionService) { }

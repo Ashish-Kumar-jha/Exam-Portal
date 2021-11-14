@@ -37,10 +37,21 @@ private QuizService quizService;
        Quiz quiz= this.quizService.getQuiz(qid);
         Set<Question> questions=quiz.getQuestions();
         List list=new ArrayList(questions);
-        list=list.subList(0,Integer.parseInt(quiz.getNumberOfQuestion()+1));
+        if(list.size()>Integer.parseInt(quiz.getNumberOfQuestion())) {
+            list = list.subList(0, Integer.parseInt(quiz.getNumberOfQuestion() + 1));
+        }
         Collections.shuffle(list);
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/quiz/all/{qid}")
+    public ResponseEntity<?> getQuestionOfQuizAdmin(@PathVariable Long qid){
+        Quiz quiz= new Quiz();
+        quiz.setQid((qid));
+        Set<Question> questionsOfQuiz=this.questionService.getQuestionsOfQuiz(quiz);
+        return ResponseEntity.ok(questionsOfQuiz);
+    }
+
     //get single Question
     @GetMapping("/{qusid}")
     public Question get(@PathVariable Long qusid){
